@@ -12,6 +12,7 @@ const page = () => {
           value={username}
           onChange={(e) => {
             setUsername(e.target.value)
+            console.log(username)
           }}
         />
       </form>
