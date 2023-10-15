@@ -1,32 +1,17 @@
 'use client'
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import Link from 'next/link'
+import Header from '@/Components/Header'
+import { MyContext } from '@/Helper/Context'
+import React, { useContext } from 'react'
 
 const page = () => {
-  const [users, setUsers] = useState([])
-  const getUsers = async () => {
-    const { data } = await axios.get("https://jsonplaceholder.typicode.com/users")
-    setUsers(data)
-  }
-
-  useEffect(() => {
-    getUsers()
-
-  }, [])
-
+  const user = useContext(MyContext)
+  console.log(user)
   return (
-    <>
-      <button onClick={getUsers} className='bg-green-400 text-white 
-      px-4 py-2
-       rounded font-bold'>Get Data</button>
-      <div className='p-8 bg-slate-100 mt-5'>
-        {users.map((e) => {
-          return <li>{e.username} --- <a href={`/${e.id}`}>Explore</a></li>
-        })}
-      </div>
-    </>
+    <div>
+      {user}
+      <Header />
+    </div>
   )
 }
 
-export default page;
+export default page
